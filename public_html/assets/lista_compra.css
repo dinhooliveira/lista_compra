@@ -1,0 +1,26 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16/10/2017, 12:40:34
+    Author     : Adereldo Oliveira
+*/
+
+
+.jumbotron h1{
+    text-align: center;
+}
+
+#total{
+     text-align: right;
+}
+
+.panel-heading #titulo{
+     text-align: center;
+}
+
+.panel-heading #busca{
+     text-align: right;
+}

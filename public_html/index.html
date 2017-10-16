@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Lista de compras com Angular</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="assets/angular.js"></script>
+        <script src="assets/lista_compra.js"></script>
+        <script src="assets/angular-route.js"></script>
+        <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/lista_compra.css" rel="stylesheet" type="text/css">
+    </head>
+    <body ng-app="myApp">
+        <div ng-Controller="myCtrl">
+            <div class="container">
+                <div class="jumbotron">
+                    <h1>{{titulo}}</h1>
+                </div>
+            </div>
+            <div class="container" ng-show="formulario.cadastro">
+                <div class="row">
+                    <form>
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" ng-model="produto.nome" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <input type="number"  class="form-control" placeholder="Preço" ng-model="produto.preco"  step="0.01">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <input type="number"  class="form-control" placeholder="Quantidade" ng-model="produto.qtde" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="button"  class="btn btn-primary" ng-click="salvar(produto)" >Salvar</button>
+                        </div>
+
+
+
+                    </form>
+                </div>
+            </div>
+            
+             <div class="container" ng-show="formulario.alteracao">
+                <div class="row">
+                    <form>
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" ng-model="produtoCopia.nome" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <input type="number"  class="form-control" placeholder="Preço" ng-model="produtoCopia.preco"  step="0.01">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <input type="number"  class="form-control" placeholder="Quantidade" ng-model="produtoCopia.qtde" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="button"  class="btn btn-primary" ng-click="update(produtoCopia)" >Alterar</button>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="button"  class="btn btn-primary" ng-click="voltarCadastro()" >Cancenlar</button>
+                        </div>
+
+
+
+                    </form>
+                </div>
+            </div>
+            
+            
+            <div class="container">
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">
+
+                        <div class="row">
+                            <div class="col-md-4"></div>
+
+                            <div class="col-md-4">
+                                <div id="titulo">{{titulo}}
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div id="busca">Consultar:<input ng-model="busca">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Table -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Preço</th>
+                                <th>Qtde</th>
+                                <th>Total preço</th>
+                                <th>Excluir</th>
+                                <th>Editar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr ng-repeat="p in produtos| filter:busca">
+                                <td>{{p.nome}}</td>
+                                <td>{{p.preco}}</td>
+                                <td>{{p.qtde}}</td>
+                                <td>{{p.qtde * p.preco}}</td>
+                                <td><button type="button"  class="btn btn-danger glyphicon glyphicon-remove" ng-click="excluir(p)" ></button></td>
+                                <td><button type="button"  class="btn btn-primary glyphicon glyphicon-edit" ng-click="alterar(p)" ></button></td>
+                            </tr>
+                            <tr>
+                                <td colspan="6"><div id="total"> Total à pagar  {{getTotal()}}</div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </body>
+
+
+</html>
+
+
